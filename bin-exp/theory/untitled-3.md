@@ -138,7 +138,7 @@ How did the `.got.plt` get updated? That's the reason that a pointer to the begi
 
 ## Small bit on attacks <a id="small-bit-on-attacks"></a>
 
-If full [RELRO](https://euanb26.gitbook.io/resources/cybersec/binary-exploitation/untitled/relro) is not on, the GOT is not read-only. This can lead to a GOT overwrite attack, in which we overwrite the GOT entry of a function with another address. Say, for example, puts is called on our input after a vulnerability that gave us an arbitrary write. We would be able to overwrite puts in the GOT with the address of system in the PLT perhaps, then input /bin/sh.
+If full RELRO is not on, the GOT is not read-only. This can lead to a GOT overwrite attack, in which we overwrite the GOT entry of a function with another address. Say, for example, puts is called on our input after a vulnerability that gave us an arbitrary write. We would be able to overwrite puts in the GOT with the address of system in the PLT perhaps, then input /bin/sh.
 
 When `puts@plt` would run, it would check `puts@got`, which would hold the address of system, and then jump there, allowing us to control the program's execution.
 
