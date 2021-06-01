@@ -2,7 +2,7 @@
 
 So if we step back a bit, what have we been thinking about throughout this? At a high level, we've been thinking about this notion of a control flow graph.
 
-## Quickly, what does a Control Flow Graph seem like?
+## Quickly, what does a Control Flow Graph look like?
 
 If you open up Ghidra, or a decompiler, and take a look at the graph view, that is your CFG:
 
