@@ -1,12 +1,12 @@
 # Why move from 32 to 64 bit?
 
-At a first glance, it'll seem like moving from 32 bit to 64 bit, in terms of ASLR, the benefit is the amount of bits that we can randomise objects with \(as we saw in ASLR we get 11 bits of randomisation in 32-bit, and 22 bits in 64-bit\). However, there are other important reasons that have a massive benefit, not just for ASLR, like the Stack Smashing Protector, or Canary.
+At a first glance, it'll seem like moving from 32 bit to 64 bit, in terms of ASLR, the benefit is the number of bits that we can randomise objects with \(as we saw in [ASLR ](https://tango37645.gitbook.io/binexp/bin-exp/defences/aslr)we get 11 bits of randomisation in 32-bit and 22 bits in 64-bit\). However, there are other important reasons that have a massive benefit, not just for ASLR, like the Stack Smashing Protector, or Canary.
 
 ## ABI <a id="abi"></a>
 
 One of these is the Application Binary Interface \(ABI\), which is the interface between two program modules. Often, one of these modules is a library or OS facility, and the other being a program run by the user. The ABI is also used to define how data structures are accessed in machine code.
 
-If we note back in System V Calling Conventions , we have 32-bit functions passing their parameters on the stack, \(useful when bypassing ASLR and NX to get a `ret2libc`\)
+If we note back in [System V Calling Conventions](https://tango37645.gitbook.io/binexp/bin-exp/theory/system-v-calling-conventions) , we have 32-bit functions passing their parameters on the stack, \(useful when bypassing ASLR and NX to get a `ret2libc`\)
 
 Whereas, x86-64 passes the parameters to the function via the registers, which makes it harder for attackers to do a `ret2libc` attack, as the library functions are expecting the parameters through the registers, not through the stack.
 
@@ -27,7 +27,7 @@ Having a different Application Binary Interface completely changes the attack ve
 
 There is another improvement in the 64-bit executables: Instruction Pointer \(IP\) relative addressing. Relative addressing basically means the "base plus offset", where the IP is the base. This addressing mode was present in most processors _but_ the x86 family. It isn't easy \(rather efficient\) to generate Position Independant Code/Executable \(PIC/PIE\) on a processor without IP relative addressing.
 
-Now, most executables are PIE compiled - it;'s been more than a decade to make the move from EXEC \(non-pie ELF\) to DYN \(pie/pic ELF\).
+Now, most executables are PIE compiled - it's been more than a decade to make the move from EXEC \(non-pie ELF\) to DYN \(pie/pic ELF\).
 
 The ASLR in 64-bit systems is not only better because it prevents some attacks, but it is faster than the PIE/PIC CPU support. Therefore, when attackers are designing new methods to bypass ASLR on 64-bit binaries, they need to overcome these.
 

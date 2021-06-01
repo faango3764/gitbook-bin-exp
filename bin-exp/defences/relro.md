@@ -2,7 +2,7 @@
 
 ## Background <a id="background"></a>
 
-This requires a bit of knowledge about the GOT and PLT tables. If you're not sure what they are, go take a look at the page.
+This requires a bit of knowledge about the[ GOT and PLT tables](https://tango37645.gitbook.io/binexp/bin-exp/theory/got-and-plt). If you're not sure what they are, go take a look at the page.
 
 But if we need a simple refresher, we know that the GOT \(Global Offset Table\) is used to dynamically find functions that are located in shared libraries, such as libc and ld. These calls, one the program has been run at least once, will point to the PLT \(Procedure Linkage Table\), which stores the x86 instructions to call the specific function from the GOT.
 
@@ -16,7 +16,7 @@ As GOT exists at a predefined place in memory, an attacker could exploit a vulne
 
 ## RELRO <a id="relro"></a>
 
-To prevent this, the compiler needs to ensure that the linker resolves all dynamically linked functions at the beginning of executing the binary, to make the GOT read-only. This is known as RELRO \(Relocation Read-Only\). Having the GOT being read-only, this stops the overwritting of its entries.
+To prevent this, the compiler needs to ensure that the linker resolves all dynamically linked functions at the beginning of executing the binary, to make the GOT read-only. This is known as RELRO \(Relocation Read-Only\). Having the GOT being read-only stops the overwriting of its entries.
 
 RELRO can be turned on via
 
