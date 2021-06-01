@@ -2,7 +2,7 @@
 
 Let's jump in with an example, using an x86-64 program.
 
-{% hint style="info" %}
+{% hint style="success" %}
 A practical example can be found in Exploitation
 {% endhint %}
 
