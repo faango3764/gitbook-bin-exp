@@ -28,7 +28,7 @@ _Dynamically linking binaries_ are ones where they contain a small statically li
 
 ### Working with the GOT <a id="working-with-the-got"></a>
 
-When a dynamically linked binary calls a function inside a linkable library \(say `puts()` from `libc`\), the call actually points to the PLT \(located, funnily enough, in the `.plt` section\). This will then, due to how the [GOT and PLT](https://euanb26.gitbook.io/resources/cybersec/binary-exploitation/theory/got-and-plt) work, point to the GOT, which will then point to the shared library function \(the actual address of `puts()`\)
+When a dynamically linked binary calls a function inside a linkable library \(say `puts()` from `libc`\), the call actually points to the PLT \(located, funnily enough, in the `.plt` section\). This will then, due to how the [GOT and PLT](https://tango37645.gitbook.io/binexp/bin-exp/theory/got-and-plt) work, point to the GOT, which will then point to the shared library function \(the actual address of `puts()`\)
 
 ### Advantages <a id="advantages"></a>
 
