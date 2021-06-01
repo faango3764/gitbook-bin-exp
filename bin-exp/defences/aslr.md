@@ -5,7 +5,7 @@ It is very easy, for an attacker, if they know the location of where certain asp
 Some examples of locations that attackers may want to know are:
 
 * Location of an overflow-able buffer for a particular function on the stack, which they can include in a particular call chain
-* Libc addresses which can be used in a ret2libc attack, such as `system()` and `/bin/sh`.
+* Libc addresses that can be used in a ret2libc attack, such as `system()` and `/bin/sh`.
 
 If these locations don't change, then the attacker can just load up gdb or radare2 locally and seeing where they are in the binary
 
@@ -23,10 +23,10 @@ And then they may look like this the next
 
 ![](https://gblobscdn.gitbook.com/assets%2F-MGOhxJbNhi10jg9Cv-U%2F-MGYGKwxyxdgcp2iZVti%2F-MGZ5lVJlZMocTpQgWZc%2Faslr_2.png?alt=media&token=0237f64a-d7d1-4dbc-ba9b-a8baeb876940)
 
-The reason that the regions are randomly addressed, but at offsets, is so that the process also knows where the sections for the stack, heap, libc etc. are. These offsets, on the same machine, are the same each time. For example, on a 32 bit machine
+The reason that the regions are randomly addressed, but at offsets, is so that the process also knows where the sections for the stack, heap, libc etc. are. These offsets, on the same machine, are the same each time. For example, on a 32-bit machine
 
-* One time, libc may be loaded in at address `0xf7ffadc000`
-* The next runtime, it may be loaded in at `0xf7ffad4000`
+* One time, libc may be loaded in at the address `0xf7ffadc000`
+* The next runtime, it might be loaded in at `0xf7ffad4000`
 
 However, these offsets are completely random. For example:
 
@@ -39,7 +39,7 @@ However, these offsets are completely random. For example:
 $ gcc --pie -o out program.c
 ```
 
-You need to enable pie - Position Independent Executable. This doesn't use absolute addresses, and it does things like invoke call instructions, or load the value of static data variables. Instead, all of the references to the code and static data have to be indirect somehow, such as rip-relative - relative to the current pc, or maybe via table lookup: indirect via register
+You need to enable [pie](pie.md) - Position Independent Executable. This doesn't use absolute addresses, and it does things like invoke call instructions, or load the value of static data variables. Instead, all of the references to the code and static data have to be indirect somehow, such as rip-relative - relative to the current pc, or maybe via table lookup: indirect via register
 
 If you would like to enable ASLR, then that is a kernel protection, not just for a specific binary
 

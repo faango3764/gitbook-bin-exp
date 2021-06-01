@@ -2,7 +2,7 @@
 
 ## Linux VFS Structure <a id="linux-vfs-structure"></a>
 
-Let's take a look inside Linux's VFS \(Virtual File System\) Structure
+Let's take a look inside Linux's Virtual File System \(VFS\) Structure
 
 {% code title="include/linux/fs.h" %}
 ```c

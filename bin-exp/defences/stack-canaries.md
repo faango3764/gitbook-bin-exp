@@ -2,13 +2,13 @@
 
 ## What are they? <a id="what-are-they"></a>
 
-They are essentially a value that gets set at the start of a function, and then checked at the end of a function to see if that value has been changed.
+They are essentially a value that gets set at the start of a function and then checked at the end of a function to see if that value has been changed.
 
-If it has been changed, then the application would throw a fit, calling `__stack_chk_fail()` and saying that it's detected a buffer overflow, therefore terminating the program.
+If it has been changed, then the application would throw an error, calling `__stack_chk_fail()` and saying that it's detected a buffer overflow, therefore terminating the program.
 
 You can think of them as like a canary bird, which is known as a _sentinel species_ \(organisms that detect danger\). Canaries were used in coal mines to detect whether there was any carbon monoxide in the mines \(a colourless, odourless, tasteless, toxic gas\). If there was, then the canary would have inhaled the CO before the miners, therefore allowing the miners to get out before it was too late.
 
-To put this into terms of the stack, a canary is sent in to stay idle in the stack frame. If it inhales a buffer overflow, then it'll provide a warning to the application that the canary isn't there any more, therefore resulting in a buffer overflow. The application knows that there's a danger, so it'll terminate.
+To put this into terms of the stack, a canary is sent in to stay idle in the stack frame. If it inhales a buffer overflow, then it'll provide a warning to the application that the canary isn't there anymore, therefore resulting in a buffer overflow. The application knows that there's a danger, so it'll terminate.
 
 ## How do they work? <a id="how-do-they-work"></a>
 

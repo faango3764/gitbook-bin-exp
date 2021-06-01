@@ -12,7 +12,7 @@ There are a few implications of this:
 * As GOT contains data used by different parts of the program, it needs to be allocated at a known static address in memory
 * As the GOT is lazily bound, it needs to be writable
 
-As GOT exists at a predefined place in memory, an attacker could exploit a vulnerability to write 4 bytes at a controlled place in memory \(such as integer overflows leading to out-of-bounds write\), may be exploited to allow arbitrary code execution.
+As GOT exists at a predefined place in memory, an attacker could exploit a vulnerability to write 4 bytes at a controlled place in memory \(such as integer overflows leading to out-of-bounds write\), which may be exploited to allow arbitrary code execution.
 
 ## RELRO <a id="relro"></a>
 

@@ -45,7 +45,7 @@ The enclave can return the control of the CPU back to the untrusted host by exec
 
 CPU microarchitecture
 
-So when we look at normal microarchitecture, we see that we've got a core alongside some L1, L2 and L3 cache. We've got the page table register \(`%cr3` which we looked at in [NX + page tables](https://euanb26.gitbook.io/resources/cybersec/binary-exploitation/untitled/nx)\). It's going to have a bunch of Translation Lookaside Buffers \(TLBs\) that control the mappings from virtual mappings to physical ones.
+So when we look at normal microarchitecture, we see that we've got a core alongside some L1, L2 and L3 cache. We've got the page table register \(`%cr3` which we looked at in [NX + page tables](nx-and-page-tables.md)\). It's going to have a bunch of Translation Lookaside Buffers \(TLBs\) that control the mappings from virtual mappings to physical ones.
 
 We're then going to add this special `isEnclave` bit. This can be thought of as being similar to the logical `isPrivelleged` bit that the CPU has, which is set for whether the code is running in the kernel-mode or in user-mode. So therefore, we can say that the `isEnclave` bit is asking whether were running enclave code or not.
 
@@ -118,7 +118,9 @@ The kernel is going to execute the `EEXIT` instruction which has a parameter of 
 * Clear the `TCS.isBusy` bit to say that the thread isn't used
 * Jump to the `jmpTarget` in the untrusted host; should be saved buy `EENTER`.
 
-_Note: none of these instructions change the_ `cr3` _register._
+{% hint style="info" %}
+Note: none of these instructions change the `cr3` register.
+{% endhint %}
 
 ## _Memory access check_ <a id="memory-access-check"></a>
 
@@ -130,7 +132,7 @@ Memory access checks in SGX
 
 This is basically showing how virtual address is translated and checked to see if it's an enclave page.
 
-## Hyperthreading side channel  <a id="hyperthreading-side-channel"></a>
+## Hyperthreading side-channel  <a id="hyperthreading-side-channel"></a>
 
 Before we get into this **attack**, we need to deep dive into what a processor architecture looks like
 
@@ -144,7 +146,7 @@ In this case, we have a blue thread that is operating on the top logical thread,
 
 So the instructions get queued up, they go through register rename, holding the rewritten instructions in the queue. We then get to instruction scheduling, and what we see the core of pipelining. This part is actually agnostic as to which logical core instructions come from. What this out-of-order execution core sees is dependencies between various instructions and various registers and various memory values. There isn't any notion of the blue instruction coming from the blue registers or a yellow instruction coming from a yellow register. At the end, where we retire stuff, we have to care about the notion of these logical cores. We see the reorder buffer, where the stuff in the middle is out-of-order execution, but to enable precise interrupts, we have to retire each one of the instructions through each logical core in logical orders
 
-Now imagine that the blue code belongs to enclave code,and that the yellow code belongs to the non-enclave code. So what might happen? There's actually contention in the shared core of the pipeline. It's conventional as there are functional units and other resources that are shared between enclave code and non-enclave code.
+Now imagine that the blue code belongs to enclave code and that the yellow code belongs to the non-enclave code. So what might happen? There's actually contention in the shared core of the pipeline. It's conventional as there are functional units and other resources that are shared between enclave code and non-enclave code.
 
 So as a trivial example, suppose that the non-enclave code wanted to determine whether the enclave was executing integer instructions or not. What the non-enclave code could do is time how long the integer instructions take. Whenever the non-enclave code sees the completion time of those instructions go up, for example, if it reads the time stamp counter, then the non-enclave code can infer that the enclave code is using integer functions.
 

@@ -27,9 +27,7 @@ As it is a very important mitigation, it's becoming standard on popular chips, s
 
 ## Page tables for NX bits <a id="page-tables-for-nx-bits"></a>
 
-![](https://gblobscdn.gitbook.com/assets%2F-MGOhxJbNhi10jg9Cv-U%2F-MGPT_9Mfw1vUlMDkAdR%2F-MGPXyF-21w6R3821cdM%2Fnx_explanation.PNG?alt=media&token=b5548d85-9bcd-4f6a-ad9b-cfc67991e1ad)
-
-Page tables for x86-64
+![Page tables for x86-64](https://gblobscdn.gitbook.com/assets%2F-MGOhxJbNhi10jg9Cv-U%2F-MGPT_9Mfw1vUlMDkAdR%2F-MGPXyF-21w6R3821cdM%2Fnx_explanation.PNG?alt=media&token=b5548d85-9bcd-4f6a-ad9b-cfc67991e1ad)
 
 This is what the page tables look like for an x86-64 application.
 
@@ -39,15 +37,11 @@ The `cr3` register points to the `Page map level 4 (Entry)`, which also takes so
 
 If we take a look at what one of the entries in the `PTE` entries are, we can see quite a couple things which are labelled.
 
-![](https://gblobscdn.gitbook.com/assets%2F-MGOhxJbNhi10jg9Cv-U%2F-MGPT_9Mfw1vUlMDkAdR%2F-MGPbDtGKcewPEHaxhO5%2FPTE_entry.PNG?alt=media&token=d19d7d69-0136-48f4-adda-f8a8c08cce9b)
-
-PTE entry with no NX bit
+![PTE entry with no NX bit](https://gblobscdn.gitbook.com/assets%2F-MGOhxJbNhi10jg9Cv-U%2F-MGPT_9Mfw1vUlMDkAdR%2F-MGPbDtGKcewPEHaxhO5%2FPTE_entry.PNG?alt=media&token=d19d7d69-0136-48f4-adda-f8a8c08cce9b)
 
 This is what it'll look like when there's no NX bit. The numbers at the bottom correlate to the numbers at the top of the previous image, the virtual address offsets. Now let's see what it'll look like when there is an NX bit set.
 
-![](https://gblobscdn.gitbook.com/assets%2F-MGOhxJbNhi10jg9Cv-U%2F-MGPT_9Mfw1vUlMDkAdR%2F-MGPc6T1b7Di9FORdtGA%2FPTE_entry_nx_enabled.PNG?alt=media&token=abea47ae-9c12-423a-b192-f69ef0ffe8b5)
-
-PTE entry with NX bit
+![PTE entry with NX bit](https://gblobscdn.gitbook.com/assets%2F-MGOhxJbNhi10jg9Cv-U%2F-MGPT_9Mfw1vUlMDkAdR%2F-MGPc6T1b7Di9FORdtGA%2FPTE_entry_nx_enabled.PNG?alt=media&token=abea47ae-9c12-423a-b192-f69ef0ffe8b5)
 
 So we can see here that an NX bit has been added to the 63 bit in the entry
 
