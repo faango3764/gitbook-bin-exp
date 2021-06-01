@@ -6,5 +6,7 @@ Let's get into it!
 
 \(Examples will be included for each type of attack, I just haven't gotten round to creating them all\)
 
-Testing
+This website can be found here:
+
+[https://tango37645.gitbook.io/binexp/](https://tango37645.gitbook.io/binexp/)
 
