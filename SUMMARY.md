@@ -19,10 +19,11 @@
 * [Defences](bin-exp/defences/README.md)
   * [NX + page tables](bin-exp/defences/nx-and-page-tables.md)
   * [Stack Canaries](bin-exp/defences/stack-canaries.md)
-  * [Intel CET](bin-exp/defences/intel-cet.md)
   * [ASLR](bin-exp/defences/aslr.md)
+  * [RELRO](bin-exp/defences/relro.md)
+  * [PIE](bin-exp/defences/pie.md)
   * [Why move from 32 to 64 bit?](bin-exp/defences/why-move-from-32-bit-to-64-bit.md)
   * [Randomising struct layout](bin-exp/defences/randomising-struct-layout.md)
-  * [RELRO](bin-exp/defences/relro.md)
+  * [Intel CET](bin-exp/defences/intel-cet.md)
   * [SGX](bin-exp/defences/sgx.md)
 
